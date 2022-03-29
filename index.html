@@ -26,14 +26,14 @@
   </head>
 
   <body>
-    <header class="container-fluid text-center bg-dark text-white p-2">
+    <header class="container-fluid text-center bg-dark text-white p-5">
       <h1>Weather Dashboard</h1>
     </header>
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-3 bg-light">
-          <h4 class="mt-1">Search by City or zip code:</h4>
+        <div class="col-lg-3 bg-light mt-3">
+          <h4 class="">Search by City Name:</h4>
           <div class="input-group mb-3">
             <input
               id="cityInput"
@@ -51,13 +51,13 @@
         </div>
         <div class="col-lg-9">
           <div class="row mr-0">
-            <div class="col-lg-11 card m-3 d-none" id="today-weather">
+            <div class="col-lg-11 card m-3" id="todayWeather">
               <div class="card-body">
                 <h3 id="city-name" class="city-name align-middle"></h3>
                 <img id="current-pic" alt="" />
-                <p id="temperature"></p>
+                <p id="temp"></p>
                 <p id="humidity"></p>
-                <p id="wind-speed"></p>
+                <p id="windSpeed"></p>
                 <p id="UV-index"></p>
               </div>
             </div>
