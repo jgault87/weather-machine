@@ -43,7 +43,7 @@ function getWeather(city) {
 
       //parse results to page
 
-      var currentCity = response.name + " " + today;
+      var currentCity = response.name + "," + " " + response.sys.country + ' ' + today;
       var currentHumidity = "Humidity: " + response.main.humidity + "%";
       var currentTemp = "Temperature: " + response.main.temp + " ℉";
       var currentWind = "Wind: " + response.wind.speed + " MPH";
@@ -59,29 +59,36 @@ function getWeather(city) {
         UVCoordLat +
         "&lon=" +
         UVCoordLon +
-        "&units=imperial" + /*<--convert units*/
+        "&units=imperial" /*<--convert units*/ +
         "&appid=" +
         APIKey;
 
-        console.log(UVcall);
+      console.log(UVcall);
 
-        fetch(UVcall)
-        .then (function (UVresponse) {
-
+      fetch(UVcall)
+        .then(function (UVresponse) {
           return UVresponse.json();
         })
 
-        .then (function (UVresponse) {
+        //color coding for UVI response severity
+        .then(function (UVresponse) {
           console.log(UVresponse);
-          currentUVI = 'UV Index: ' + UVresponse.current.uvi;
+          UVeye = UVresponse.current.uvi;
+          currentUVI = "UV Index: " + UVresponse.current.uvi;
           UVIndexEl.innerHTML = currentUVI;
 
-
-        })
-      
-
-
-
+          if (UVeye >= 0 && UVeye < 3) {
+            console.log("yep");
+          
+            UVIndexEl.classList.add('uvi-low');
+          } else if (UVeye >= 3 && UVeye < 6) {
+            UVIndexEl.classList.add('uvi-med');
+          } else if (UVeye >= 6 && UVeye < 8) {
+            UVIndexEl.classList.add('uvi-high');
+          } else if (UVeye >= 8) {
+            UVIndexEl.classList.add('uvi-vhigh');
+          }
+        });
     });
 }
 
@@ -102,7 +109,7 @@ function getForecast(city) {
     "&units=imperial" /*<--convert units*/ +
     "&appid=" +
     APIKey;
-  // &units=imperial added to query URL for the US antiquated measurement system
+  
 
   console.log(callURL);
 
@@ -119,5 +126,12 @@ function getForecast(city) {
       console.log(response); //check results
 
       //parse results to page
+
+
+
+
     });
+
+
 }
+

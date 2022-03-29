@@ -6,3 +6,24 @@ header  {
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+
+.uvi-low {
+background-color: rgba(0, 128, 0, 0.472);
+content:🟢;
+}
+
+.uvi-med {
+background-color: rgba(255, 255, 0, 0.459);
+
+}
+
+.uvi-high {
+    background-color: rgba(255, 145, 0, 0.493);
+    
+    }
+
+.uvi-vhigh {
+background-color: rgba(255, 0, 0, 0.431);
+
+}
