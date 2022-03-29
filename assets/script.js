@@ -43,7 +43,8 @@ function getWeather(city) {
 
       //parse results to page
 
-      var currentCity = response.name + "," + " " + response.sys.country + ' ' + today;
+      var currentCity =
+        response.name + "," + " " + response.sys.country + " " + today;
       var currentHumidity = "Humidity: " + response.main.humidity + "%";
       var currentTemp = "Temperature: " + response.main.temp + " ℉";
       var currentWind = "Wind: " + response.wind.speed + " MPH";
@@ -79,14 +80,14 @@ function getWeather(city) {
 
           if (UVeye >= 0 && UVeye < 3) {
             console.log("yep");
-          
-            UVIndexEl.classList.add('uvi-low');
+
+            UVIndexEl.classList.add("uvi-low");
           } else if (UVeye >= 3 && UVeye < 6) {
-            UVIndexEl.classList.add('uvi-med');
+            UVIndexEl.classList.add("uvi-med");
           } else if (UVeye >= 6 && UVeye < 8) {
-            UVIndexEl.classList.add('uvi-high');
+            UVIndexEl.classList.add("uvi-high");
           } else if (UVeye >= 8) {
-            UVIndexEl.classList.add('uvi-vhigh');
+            UVIndexEl.classList.add("uvi-vhigh");
           }
         });
     });
@@ -103,17 +104,16 @@ searchEl.addEventListener("click", function () {
 //function for 5-day forcast
 
 function getForecast(city) {
-  var callURL =
+  var castURL =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     city +
     "&units=imperial" /*<--convert units*/ +
     "&appid=" +
     APIKey;
-  
 
-  console.log(callURL);
+  console.log(castURL);
 
-  fetch(callURL)
+  fetch(castURL)
     .then(function (response) {
       if (!response.ok) {
         throw response.json();
@@ -125,13 +125,17 @@ function getForecast(city) {
     .then(function (response) {
       console.log(response); //check results
 
+
       //parse results to page
-
-
-
+      printForeCast(response);
 
     });
-
-
 }
 
+
+function printForeCast(resultObj) {
+  console.log(resultObj);
+
+   
+
+}
