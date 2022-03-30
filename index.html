@@ -40,16 +40,16 @@
               type="text"
               class="form-control"
               placeholder="Enter a city"
-              aria-label="Enter a city"
+              aria-label="Enter a city" 
             />
             <div class="input-group-prepend">
-              <button class="btn btn-primary" type="button" id="searchBtn">
+              <button class="btn cardset" type="button" id="searchBtn">
                 <i class="fas fa-search"></i>
               </button>
             </div>
           </div>
         </div>
-        <div class="col-lg-9">
+        <div id='results' class="col-lg-9 d-none">
           <div class="row mr-0">
             <div class="col-lg-11 card m-3" id="todayWeather">
               <div class="card-body">
@@ -62,7 +62,7 @@
               </div>
             </div>
           </div>
-          <div class="row d-none" id="fiveday-header">
+          <div class="row " id="forecast-head">
             <div class="col-12">
               <h3>5-Day Forecast</h3>
             </div>
@@ -71,19 +71,19 @@
           <!-- populate forecast containers -->
           <div class="row">
             <div
-              class="col-md-2 forecast bg-primary text-white m-2 rounded"
+              class="col-md-2 forecast cardset text-white m-2 rounded"
             ></div>
             <div
-              class="col-md-2 forecast bg-primary text-white m-2 rounded"
+              class="col-md-2 forecast cardset text-white m-2 rounded"
             ></div>
             <div
-              class="col-md-2 forecast bg-primary text-white m-2 rounded"
+              class="col-md-2 forecast cardset text-white m-2 rounded"
             ></div>
             <div
-              class="col-md-2 forecast bg-primary text-white m-2 rounded"
+              class="col-md-2 forecast cardset text-white m-2 rounded"
             ></div>
             <div
-              class="col-md-2 forecast bg-primary text-white m-2 rounded"
+              class="col-md-2 forecast cardset text-white m-2 rounded"
             ></div>
           </div>
         </div>

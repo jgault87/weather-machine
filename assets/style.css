@@ -1,29 +1,36 @@
-header  {
-    background: -webkit-linear-gradient(to right, #2c3e50, #4ca1af); 
-    background: linear-gradient(to right, #2c3e50, #4ca1af); 
+header {
+    background: -webkit-linear-gradient(to right, #2c3e50, #4ca1af);
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
 
 }
+
 body {
     font-family: 'Roboto', sans-serif;
 }
 
 
 .uvi-low {
-background-color: rgba(0, 128, 0, 0.472);
+    background-color: rgba(0, 128, 0, 0.472);
 
 }
 
 .uvi-med {
-background-color: rgba(255, 255, 0, 0.459);
+    background-color: rgba(255, 255, 0, 0.459);
 
 }
 
 .uvi-high {
     background-color: rgba(255, 145, 0, 0.493);
-    
-    }
+
+}
 
 .uvi-vhigh {
-background-color: rgba(255, 0, 0, 0.431);
+    background-color: rgba(255, 0, 0, 0.431);
 
+}
+
+.cardset {
+    background-color: #0e6fb4c2;
+
+    
 }

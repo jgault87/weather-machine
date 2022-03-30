@@ -5,7 +5,11 @@ var tempEl = document.getElementById("temp");
 var humidityEl = document.getElementById("humidity");
 var windSpeedEl = document.getElementById("windSpeed");
 var UVIndexEl = document.getElementById("UV-index");
+var forecastElHead = document.getElementById("forecast-head");
 
+var unhide = document.getElementById("results");
+
+// oneweather apikey var
 var APIKey = "d11b55d32ed7a61161ed887f7799ce29";
 
 // get current date
@@ -48,8 +52,10 @@ function getWeather(city) {
       var currentHumidity = "Humidity: " + response.main.humidity + "%";
       var currentTemp = "Temperature: " + response.main.temp + " ℉";
       var currentWind = "Wind: " + response.wind.speed + " MPH";
+
       var UVCoordLat = response.coord.lat;
       var UVCoordLon = response.coord.lon;
+
       currentWeatherEl.innerHTML = currentCity;
       tempEl.innerHTML = currentTemp;
       windSpeedEl.innerHTML = currentWind;
@@ -93,14 +99,6 @@ function getWeather(city) {
     });
 }
 
-searchEl.addEventListener("click", function () {
-  const searchQ = cityInput.value;
-  getWeather(searchQ); /*<--pass search query to call current weather */
-  getForecast(searchQ); /*<--pass search query to call forecast */
-
-  // console.log(searchQ);
-});
-
 //function for 5-day forcast
 
 function getForecast(city) {
@@ -125,17 +123,63 @@ function getForecast(city) {
     .then(function (response) {
       console.log(response); //check results
 
-
       //parse results to page
-      printForeCast(response);
-
+      printForecast(response);
     });
 }
 
+function printForecast(forecast) {
+  console.log(forecast);
 
-function printForeCast(resultObj) {
-  console.log(resultObj);
+  //loop through 5 classes to match response.index value for 5 day forecast
+  var forecastElBody = document.querySelectorAll(".forecast");
+  for (i = 0; i < forecastElBody.length; i++) {
+    let forecastResult = i * 8 + 4;
 
-   
+     //translate date from response to proper format
+    let forecastDate = new Date(forecast.list[forecastResult].dt * 1000);
+    let forecastDay = forecastDate.getDate();
+    let forecastMonth = forecastDate.getMonth() + 1;
+    let forecastYear = forecastDate.getFullYear();
 
+
+    // continue use of looping forecastEl index to parse/print responses into div els
+    let forecastDateEl = document.createElement("p");
+    forecastDateEl.setAttribute("class", "mt-3 forecast-date");
+    forecastDateEl.innerHTML =
+      "(" + forecastMonth + "/" + forecastDay + "/" + forecastYear + ")";
+    forecastElBody[i].append(forecastDateEl);
+
+    let forecastTempEl = document.createElement("p");
+    forecastTempEl.innerHTML =
+      "Temp: " + forecast.list[forecastResult].main.temp + " ℉";
+    forecastElBody[i].append(forecastTempEl);
+
+    let forecastWindEl = document.createElement("p");
+    forecastWindEl.innerHTML =
+      "Wind: " + forecast.list[forecastResult].wind.speed + " MPH";
+    forecastElBody[i].append(forecastWindEl);
+
+    let forecastHumEl = document.createElement("p");
+    forecastHumEl.innerHTML =
+      "Humidity: " + forecast.list[forecastResult].main.humidity + " %";
+    forecastElBody[i].append(forecastHumEl);
+  }
+}
+
+
+searchEl.addEventListener("click", function () {
+  const searchQ = cityInput.value;
+  getWeather(searchQ); /*<--pass search query to call current weather */
+  getForecast(searchQ); /*<--pass search query to call forecast */
+  unhide.classList.remove("d-none"); /* unhide main body div & children */
+  // console.log(searchQ);
+  resetInput(searchQ);
+
+});
+
+
+function resetInput(event) {
+
+  cityInput.value = '';
 }
