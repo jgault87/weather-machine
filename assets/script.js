@@ -137,27 +137,37 @@ function getForecast(city) {
 }
 
 function printForecast(forecast) {
-  console.log(forecast);
+  console.log(forecast.list[0].weather[0].icon);
 
+  
   //loop through 5 classes to match response.index value for 5 day forecast
-
+  
   for (i = 0; i < forecastElBody.length; i++) {
     let forecastResult = i * 8 + 4;
-
+    
     //translate date from response to proper format
     let forecastDate = new Date(forecast.list[forecastResult].dt * 1000);
     let forecastDay = forecastDate.getDate();
     let forecastMonth = forecastDate.getMonth() + 1;
     let forecastYear = forecastDate.getFullYear();
-
-    // continue use of looping forecastEl index to parse/print responses into div els
+    
+    // continue use of looping forecastEl index to parse/print responses into div else
     let forecastDateEl = document.createElement("p");
     forecastDateEl.setAttribute("class", "mt-3 forecast-date");
     forecastDateEl.innerHTML =
-      forecastMonth + "/" + forecastDay + "/" + forecastYear;
+    forecastMonth + "/" + forecastDay + "/" + forecastYear;
     forecastElBody[i].append(forecastDateEl);
+    
+    //insert icon else
+    let imageURL = 'https://openweathermap.org/img/w/' + forecast.list[forecastResult].weather[0].icon + '.png';
+    let weatherIcon = document.createElement('img');
+    weatherIcon.setAttribute('src', imageURL )
+    forecastElBody[i].append(weatherIcon);
 
-    //insert icon els
+
+
+
+
 
     //render 5 day temp elements
     let forecastTempEl = document.createElement("p");
