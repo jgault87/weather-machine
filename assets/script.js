@@ -6,6 +6,9 @@ var humidityEl = document.getElementById("humidity");
 var windSpeedEl = document.getElementById("windSpeed");
 var UVIndexEl = document.getElementById("UV-index");
 var forecastElHead = document.getElementById("forecast-head");
+var forecastElBody = document.querySelectorAll(".forecast");
+
+
 
 var unhide = document.getElementById("results");
 
@@ -128,20 +131,21 @@ function getForecast(city) {
     });
 }
 
+
+
 function printForecast(forecast) {
   console.log(forecast);
-
+  
   //loop through 5 classes to match response.index value for 5 day forecast
-  var forecastElBody = document.querySelectorAll(".forecast");
+  
   for (i = 0; i < forecastElBody.length; i++) {
     let forecastResult = i * 8 + 4;
 
-     //translate date from response to proper format
+    //translate date from response to proper format
     let forecastDate = new Date(forecast.list[forecastResult].dt * 1000);
     let forecastDay = forecastDate.getDate();
     let forecastMonth = forecastDate.getMonth() + 1;
     let forecastYear = forecastDate.getFullYear();
-
 
     // continue use of looping forecastEl index to parse/print responses into div els
     let forecastDateEl = document.createElement("p");
@@ -150,16 +154,18 @@ function printForecast(forecast) {
       "(" + forecastMonth + "/" + forecastDay + "/" + forecastYear + ")";
     forecastElBody[i].append(forecastDateEl);
 
+    //render 5 day temp elements
     let forecastTempEl = document.createElement("p");
     forecastTempEl.innerHTML =
       "Temp: " + forecast.list[forecastResult].main.temp + " ℉";
     forecastElBody[i].append(forecastTempEl);
 
+    //render 5 day wind elements
     let forecastWindEl = document.createElement("p");
     forecastWindEl.innerHTML =
       "Wind: " + forecast.list[forecastResult].wind.speed + " MPH";
     forecastElBody[i].append(forecastWindEl);
-
+    //render 5 day humidity elements
     let forecastHumEl = document.createElement("p");
     forecastHumEl.innerHTML =
       "Humidity: " + forecast.list[forecastResult].main.humidity + " %";
@@ -167,19 +173,24 @@ function printForecast(forecast) {
   }
 }
 
-
 searchEl.addEventListener("click", function () {
   const searchQ = cityInput.value;
   getWeather(searchQ); /*<--pass search query to call current weather */
   getForecast(searchQ); /*<--pass search query to call forecast */
-  unhide.classList.remove("d-none"); /* unhide main body div & children */
+  unhide.classList.remove("d-none"); /* unhide main results div & children */
   // console.log(searchQ);
   resetInput(searchQ);
 
+  // clear previous five day forecast
+  for (i = 0; i < forecastElBody.length; i++) {
+    forecastElBody[i].textContent = " ";}
+  
 });
 
-
-function resetInput(event) {
-
-  cityInput.value = '';
+// clear input field after submission
+function resetInput(query) {
+  cityInput.value = "";
+  
 }
+
+
