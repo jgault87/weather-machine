@@ -7,8 +7,7 @@ var windSpeedEl = document.getElementById("windSpeed");
 var UVIndexEl = document.getElementById("UV-index");
 var forecastElHead = document.getElementById("forecast-head");
 var forecastElBody = document.querySelectorAll(".forecast");
-
-
+var searchHistoryEl = document.getElementById("history");
 
 var unhide = document.getElementById("results");
 var unhide2 = document.getElementById("foot");
@@ -48,16 +47,13 @@ function getWeather(city) {
 
     .then(function (response) {
       console.log(response); //check results
-      
-     
-      
-          //parse results to page
+
+      //parse results to page
 
       var currentCity =
         response.name + "," + " " + response.sys.country + " " + today;
-        // render weather icon below this line
+      // render weather icon below this line
 
-        
       var currentHumidity = "Humidity: " + response.main.humidity + "%";
       var currentTemp = "Temperature: " + response.main.temp + " ℉";
       var currentWind = "Wind: " + response.wind.speed + " MPH";
@@ -137,13 +133,11 @@ function getForecast(city) {
     });
 }
 
-
-
 function printForecast(forecast) {
   console.log(forecast);
-  
+
   //loop through 5 classes to match response.index value for 5 day forecast
-  
+
   for (i = 0; i < forecastElBody.length; i++) {
     let forecastResult = i * 8 + 4;
 
@@ -157,13 +151,10 @@ function printForecast(forecast) {
     let forecastDateEl = document.createElement("p");
     forecastDateEl.setAttribute("class", "mt-3 forecast-date");
     forecastDateEl.innerHTML =
-       forecastMonth + "/" + forecastDay + "/" + forecastYear;
+      forecastMonth + "/" + forecastDay + "/" + forecastYear;
     forecastElBody[i].append(forecastDateEl);
 
     //insert icon els
-
-
-
 
     //render 5 day temp elements
     let forecastTempEl = document.createElement("p");
@@ -184,18 +175,19 @@ function printForecast(forecast) {
   }
 }
 
+// search query click event
 searchEl.addEventListener("click", function () {
   const searchQ = cityInput.value;
   getWeather(searchQ); /*<--pass search query to call current weather */
-  getForecast(searchQ); /*<--pass search query to call forecast */
+  getForecast(searchQ); /*<--pass search query to call 5day forecast */
   unhide.classList.remove("d-none"); /* unhide main results div & children */
   // console.log(searchQ);
   resetInput(searchQ);
 
-  // clear previous five day forecast
+  // clear if there was a previously rendered five day forecast
   for (i = 0; i < forecastElBody.length; i++) {
-    forecastElBody[i].textContent = " ";}
-  
+    forecastElBody[i].textContent = " ";
+  }
 });
 
 // clear input field after submission
@@ -204,7 +196,4 @@ function resetInput(query) {
 
   //unhide footer
   unhide2.classList.remove("d-none");
-  
 }
-
-
