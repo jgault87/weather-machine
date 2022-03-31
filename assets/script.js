@@ -7,12 +7,15 @@ var windSpeedEl = document.getElementById("windSpeed");
 var UVIndexEl = document.getElementById("UV-index");
 var forecastElHead = document.getElementById("forecast-head");
 var forecastElBody = document.querySelectorAll(".forecast");
+
+
 var searchHistoryEl = document.getElementById("history");
+
 
 var unhide = document.getElementById("results");
 var unhide2 = document.getElementById("foot");
 
-// oneweather apikey var
+// onecall weather apikey var
 var APIKey = "d11b55d32ed7a61161ed887f7799ce29";
 
 // get current date
@@ -177,21 +180,25 @@ function printForecast(forecast) {
 
 // search query click event
 searchEl.addEventListener("click", function () {
-  const searchQ = cityInput.value;
-  getWeather(searchQ); /*<--pass search query to call current weather */
-  getForecast(searchQ); /*<--pass search query to call 5day forecast */
-  unhide.classList.remove("d-none"); /* unhide main results div & children */
-  // console.log(searchQ);
-  resetInput(searchQ);
+  if (!cityInput.value) {
+    return;
+  } else {
+    const searchQ = cityInput.value;
+    getWeather(searchQ); /*<--pass search query to call current weather */
+    getForecast(searchQ); /*<--pass search query to call 5day forecast */
+    unhide.classList.remove("d-none"); /* unhide main results div & children */
+    // console.log(searchQ);
+    resetInput(searchQ);
 
-  // clear if there was a previously rendered five day forecast
-  for (i = 0; i < forecastElBody.length; i++) {
-    forecastElBody[i].textContent = " ";
+    // clear if there was a previously rendered five day forecast
+    for (i = 0; i < forecastElBody.length; i++) {
+      forecastElBody[i].textContent = " ";
+    }
   }
 });
 
 // clear input field after submission
-function resetInput(query) {
+function resetInput() {
   cityInput.value = "";
 
   //unhide footer
