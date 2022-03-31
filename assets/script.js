@@ -3,6 +3,7 @@ var cityInput = document.getElementById("cityInput");
 var currentWeatherEl = document.getElementById("city-name");
 var tempEl = document.getElementById("temp");
 var humidityEl = document.getElementById("humidity");
+var iconEl = document.getElementById("weather-icon")
 var windSpeedEl = document.getElementById("windSpeed");
 var UVIndexEl = document.getElementById("UV-index");
 var forecastElHead = document.getElementById("forecast-head");
@@ -56,6 +57,13 @@ function getWeather(city) {
       var currentCity =
         response.name + "," + " " + response.sys.country + " " + today;
       // render weather icon below this line
+      
+      let description = 'Condition: ' + response.weather[0].main;
+      let imageURL = 'https://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
+      let weatherIcon = document.createElement('img');
+      weatherIcon.setAttribute('src', imageURL )
+      iconEl.append(description, weatherIcon);
+
 
       var currentHumidity = "Humidity: " + response.main.humidity + "%";
       var currentTemp = "Temperature: " + response.main.temp + " ℉";
@@ -158,7 +166,7 @@ function printForecast(forecast) {
     forecastMonth + "/" + forecastDay + "/" + forecastYear;
     forecastElBody[i].append(forecastDateEl);
     
-    //insert icon else
+    //insert icon elements
     let imageURL = 'https://openweathermap.org/img/w/' + forecast.list[forecastResult].weather[0].icon + '.png';
     let weatherIcon = document.createElement('img');
     weatherIcon.setAttribute('src', imageURL )
