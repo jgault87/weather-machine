@@ -11,6 +11,7 @@ var forecastElBody = document.querySelectorAll(".forecast");
 
 
 var unhide = document.getElementById("results");
+var unhide2 = document.getElementById("foot");
 
 // oneweather apikey var
 var APIKey = "d11b55d32ed7a61161ed887f7799ce29";
@@ -47,11 +48,16 @@ function getWeather(city) {
 
     .then(function (response) {
       console.log(response); //check results
-
-      //parse results to page
+      
+     
+      
+          //parse results to page
 
       var currentCity =
         response.name + "," + " " + response.sys.country + " " + today;
+        // render weather icon below this line
+
+        
       var currentHumidity = "Humidity: " + response.main.humidity + "%";
       var currentTemp = "Temperature: " + response.main.temp + " ℉";
       var currentWind = "Wind: " + response.wind.speed + " MPH";
@@ -151,8 +157,13 @@ function printForecast(forecast) {
     let forecastDateEl = document.createElement("p");
     forecastDateEl.setAttribute("class", "mt-3 forecast-date");
     forecastDateEl.innerHTML =
-      "(" + forecastMonth + "/" + forecastDay + "/" + forecastYear + ")";
+       forecastMonth + "/" + forecastDay + "/" + forecastYear;
     forecastElBody[i].append(forecastDateEl);
+
+    //insert icon els
+
+
+
 
     //render 5 day temp elements
     let forecastTempEl = document.createElement("p");
@@ -190,6 +201,9 @@ searchEl.addEventListener("click", function () {
 // clear input field after submission
 function resetInput(query) {
   cityInput.value = "";
+
+  //unhide footer
+  unhide2.classList.remove("d-none");
   
 }
 

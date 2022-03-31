@@ -1,5 +1,5 @@
 header {
-    background: -webkit-linear-gradient(to right, #2c3e50, #4ca1af);
+    background: -webkit-linear-gradient(to right, #2c3e50, #517e85);
     background: linear-gradient(to right, #2c3e50, #4ca1af);
 
 }
@@ -34,3 +34,10 @@ body {
 
     
 }
+
+.feet {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30vh;
+    font-size: 1.5rem;
+  }
