@@ -43,29 +43,16 @@ body {
   }
 
 
-
-
-
-  li:before {
-    content: "\200B";
-    position: absolute;
-  }
-  
-  li::after {
-    content: " ";
-    display: block;
-    clear: both;
-  }
   
   li button {
     float: right;
     border: none;
-    height: 4.5vh;
+    height: 4.4vh;
     cursor: pointer;
     background: #2c3e50;
     color: white;
     font-size: 1em;
-    border-radius: 7px;
+    border-radius: 10px;
   }
 
   ul {
@@ -81,7 +68,8 @@ body {
     padding: 5px;
     color: white;
     font-size: 1.2em;
-    line-height: 1.5;
+    line-height: 3;
     background-color: #0e6fb4c2;
     border-radius: 5px;
+    cursor: pointer;
   }

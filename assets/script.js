@@ -20,7 +20,6 @@ var previousSearches = [];
 
 init();
 
-
 // onecall weather apikey var
 var APIKey = "d11b55d32ed7a61161ed887f7799ce29";
 
@@ -200,17 +199,11 @@ function printForecast(forecast) {
 
 // search query click event
 
-
-cityInput.addEventListener("keyup", function(event){
-if (event.keyCode === 13) {
-  event.preventDefault();
-  document.getElementById("searchBtn").click(); 
- 
-
-}
-
+cityInput.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    document.getElementById("searchBtn").click();
+  }
 });
-
 
 searchEl.addEventListener("click", function () {
   if (!cityInput.value) {
@@ -238,26 +231,7 @@ searchEl.addEventListener("click", function () {
   }
 });
 
-
-
-
-function renderHistory() {
-  historyEl.innerHTML = "";
-  for (var i = 0; i < previousSearches.length; i++) {
-    var previousSearch = previousSearches[i];
-
-    var li = document.createElement("li");
-    li.textContent = previousSearch;
-    li.setAttribute("data-index", i);
-
-    var button = document.createElement("button");
-    button.textContent = "clear";
-
-    li.appendChild(button);
-    historyEl.appendChild(li);
-  }
-}
-
+//check/retreive stored searches if none exist begin entry
 function init() {
   var storedPreviousSearches = JSON.parse(
     localStorage.getItem("previousSearches")
@@ -270,11 +244,45 @@ function init() {
   renderHistory();
 }
 
+function renderHistory() {
+  historyEl.innerHTML = "";
+  for (var i = 0; i < previousSearches.length; i++) {
+    var previousSearch = previousSearches[i];
+
+    var li = document.createElement("li");
+    li.textContent = previousSearch;
+    li.setAttribute("data-index", i);
+    li.addEventListener("click", function () {
+      //  searchReturn = li.textContent.split('clear');
+      searchReturn = this.textContent.split("clear");
+      console.log(searchReturn[0]);
+
+      //keeps icon from stacking on multiple search
+      iconEl.innerHTML = " ";
+
+      // clear if there was a previously rendered five day forecast
+      for (i = 0; i < forecastElBody.length; i++) {
+        forecastElBody[i].textContent = " ";
+      }
+      unhide.classList.remove("d-none");
+
+      getWeather(searchReturn[0]);
+      getForecast(searchReturn[0]);
+    });
+
+    var button = document.createElement("button");
+    button.textContent = "clear";
+    
+    historyEl.appendChild(li);
+    li.appendChild(button);
+    
+  }
+}
+
 function storeHistory() {
   // Stringify and set key in localStorage array
   localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
 }
-
 
 //appends clear button to each stored search
 historyEl.addEventListener("click", function (event) {
@@ -289,8 +297,6 @@ historyEl.addEventListener("click", function (event) {
   }
 });
 
-
-
 // clear input field after submission
 function resetInput() {
   cityInput.value = "";
@@ -299,15 +305,11 @@ function resetInput() {
   unhide2.classList.remove("d-none");
 }
 
-
+//clear history
 var clearHistory = document.getElementById("clear-history");
-clearHistory.addEventListener("click", function (){
-
-  console.log("Clear History")
-  localStorage.removeItem('previousSearches');
-  location.reload();
-  
-  
-
+clearHistory.addEventListener("click", function () {
+  console.log("Clear History");
+  localStorage.removeItem("previousSearches");
+  previousSearches = [];
+  renderHistory();
 });
-
