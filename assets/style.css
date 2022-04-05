@@ -60,7 +60,7 @@ body {
   li button {
     float: right;
     border: none;
-    height: 4vh;
+    height: 4.5vh;
     cursor: pointer;
     background: #2c3e50;
     color: white;
@@ -75,7 +75,7 @@ body {
   }
   
   li {
-    height: 5vh;
+    height: 5.5vh;
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
