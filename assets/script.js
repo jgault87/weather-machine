@@ -199,6 +199,19 @@ function printForecast(forecast) {
 }
 
 // search query click event
+
+
+cityInput.addEventListener("keyup", function(event){
+if (event.keyCode === 13) {
+  event.preventDefault();
+  document.getElementById("searchBtn").click(); 
+ 
+
+}
+
+});
+
+
 searchEl.addEventListener("click", function () {
   if (!cityInput.value) {
     return;
