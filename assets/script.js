@@ -86,6 +86,7 @@ function getWeather(city) {
       tempEl.innerHTML = currentTemp;
       windSpeedEl.innerHTML = currentWind;
       humidityEl.innerHTML = currentHumidity;
+      
 
       var UVcall =
         "https://api.openweathermap.org/data/2.5/onecall?lat=" +
@@ -109,17 +110,18 @@ function getWeather(city) {
           UVeye = UVresponse.current.uvi;
           currentUVI = "UV Index: " + UVresponse.current.uvi;
           UVIndexEl.innerHTML = currentUVI;
+          
 
           if (UVeye >= 0 && UVeye < 3) {
             console.log("yep");
-
-            UVIndexEl.classList.add("uvi-low");
+            
+            UVIndexEl.className = "uvi-low";
           } else if (UVeye >= 3 && UVeye < 6) {
-            UVIndexEl.classList.add("uvi-med");
+            UVIndexEl.className = "uvi-med";
           } else if (UVeye >= 6 && UVeye < 8) {
-            UVIndexEl.classList.add("uvi-high");
+            UVIndexEl.className = "uvi-high";
           } else if (UVeye >= 8) {
-            UVIndexEl.classList.add("uvi-vhigh");
+            UVIndexEl.className = "uvi-vhigh";
           }
         });
     });
