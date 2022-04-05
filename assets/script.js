@@ -224,7 +224,7 @@ cityInput.addEventListener("keyup", function (event) {
 
 
 
-
+// the click event that starts it all
 searchEl.addEventListener("click", function () {
   if (!cityInput.value) {
     return;
