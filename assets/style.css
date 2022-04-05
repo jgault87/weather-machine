@@ -1,6 +1,18 @@
 header {
+    
     background: -webkit-linear-gradient(to right, #2c3e50, #517e85);
     background: linear-gradient(to right, #2c3e50, #4ca1af);
+    text-shadow: 4px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+.headerstyle {
+
+    background-image: URL(../assets/images/weatherbanner.png);
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+
+
 
 }
 
@@ -68,7 +80,7 @@ body {
     padding: 5px;
     color: white;
     font-size: 1.2em;
-    line-height: 3;
+    line-height: 2;
     background-color: #0e6fb4c2;
     border-radius: 5px;
     cursor: pointer;

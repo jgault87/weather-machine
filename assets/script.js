@@ -35,8 +35,6 @@ today = "(" + mm + "/" + dd + "/" + yyyy + ")";
 var timeEl = document.getElementById('time');
  
 
-
-
 //function for current weather
 function getWeather(city) {
   var callURL =
