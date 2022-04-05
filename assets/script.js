@@ -285,3 +285,16 @@ function resetInput() {
   //unhide footer
   unhide2.classList.remove("d-none");
 }
+
+
+var clearHistory = document.getElementById("clear-history");
+clearHistory.addEventListener("click", function (){
+
+  console.log("Clear History")
+  localStorage.removeItem('previousSearches');
+  location.reload();
+  
+  
+
+});
+
