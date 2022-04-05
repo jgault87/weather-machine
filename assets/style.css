@@ -1,5 +1,5 @@
 header {
-    
+    height: 150px;
     background: -webkit-linear-gradient(to right, #2c3e50, #517e85);
     background: linear-gradient(to right, #2c3e50, #4ca1af);
     text-shadow: 4px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
@@ -10,7 +10,7 @@ header {
     background-image: URL(../assets/images/weatherbanner.png);
     background-position: center;
     background-size: cover;
-    height: 200px;
+    height: 150px;
 
 
 

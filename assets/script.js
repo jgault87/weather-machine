@@ -28,12 +28,12 @@ var today = new Date();
 var dd = String(today.getDate()).padStart(2, "0");
 var mm = String(today.getMonth() + 1).padStart(2, "0");
 var yyyy = today.getFullYear();
-var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var time =
+  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
 today = "(" + mm + "/" + dd + "/" + yyyy + ")";
 
-var timeEl = document.getElementById('time');
- 
+var timeEl = document.getElementById("time");
 
 //function for current weather
 function getWeather(city) {
@@ -84,7 +84,6 @@ function getWeather(city) {
       tempEl.innerHTML = currentTemp;
       windSpeedEl.innerHTML = currentWind;
       humidityEl.innerHTML = currentHumidity;
-      
 
       var UVcall =
         "https://api.openweathermap.org/data/2.5/onecall?lat=" +
@@ -108,11 +107,10 @@ function getWeather(city) {
           UVeye = UVresponse.current.uvi;
           currentUVI = "UV Index: " + UVresponse.current.uvi;
           UVIndexEl.innerHTML = currentUVI;
-          
 
           if (UVeye >= 0 && UVeye < 3) {
             console.log("yep");
-            
+
             UVIndexEl.className = "uvi-low";
           } else if (UVeye >= 3 && UVeye < 6) {
             UVIndexEl.className = "uvi-med";
@@ -211,6 +209,22 @@ cityInput.addEventListener("keyup", function (event) {
   }
 });
 
+      //playing with event listeners
+        var headerEl = document.getElementById('switch');
+
+        headerEl.addEventListener("mouseover", function(){
+        headerEl.classList.add('headerstyle'); 
+
+        })
+
+        headerEl.addEventListener("mouseout", function(){
+          headerEl.classList.remove('headerstyle'); 
+          
+          })
+
+
+
+
 searchEl.addEventListener("click", function () {
   if (!cityInput.value) {
     return;
@@ -223,6 +237,8 @@ searchEl.addEventListener("click", function () {
     previousSearches.push(searchQ);
     resetInput(searchQ);
 
+
+    
     //push string into previous searches array and render any history
     renderHistory();
     storeHistory();
@@ -281,7 +297,6 @@ function renderHistory() {
 
     historyEl.appendChild(li);
     li.appendChild(button);
-    
   }
 }
 
