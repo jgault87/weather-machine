@@ -1,4 +1,5 @@
 # Weather Machine
+![Desktop Demo](demo.gif)
 
 DeployedURL:
 https://jgault87.github.io/weather-machine/
